@@ -1,17 +1,16 @@
-# Adapted for BLUPF90 family program outputs
+# Question 1. How to calculate variance components and genetic parameters directly via BLUPF90 programs?
 
-## A simple single trait model with only one random effect (additive animal effect only)
+# Answer:
 
-Find three components from BLUPF90+/AIREML/REML log files
-  1) Genetic Variance for effect 5 (pedigree file name also contains the same number as renadd05.ped)  
-  2) Residual Variance(s) (It is termed as R_1_1. Here _1_1 means trait 1. You must put two 1's here, either for a single or higher trait models.)
+## Suppose, I have a simple single trait Animal model with only one additive random effect (additive animal effect only)
+  1) Additive effect number was 5 (hint: more hints are generally found in the pedigree file name i.e., renadd05.ped)  
+  2) Residual Variance (here it is always R_1_1). 
 
-* Warning: Do not put a blank space before or after a particular component.
-  
+ 
 ```sh
 OPTION se_covar_function Vg G_5_5_1_1
 OPTION se_covar_function Vp G_5_5_1_1+R_1_1
 OPTION se_covar_function h2 G_5_5_1_1/(G_5_5_1_1+R_1_1)
 ```
-
+* Warning: Do not put a blank space before or after a particular component.
 
